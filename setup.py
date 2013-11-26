@@ -56,11 +56,11 @@ else:
     if not jdk_home:
         if platform == 'win32':
             env_var = environ.get('JAVA_HOME')
-            if 'jdk' in env_var:
+            if env_var and 'jdk' in env_var:
                 jdk_home = env_var
 
                 # Remove /bin if it's appended to JAVA_HOME
-                if jdk_home and jdk_home[-3:] == 'bin':
+                if jdk_home[-3:] == 'bin':
                     jdk_home = jdk_home[:-4]
         else:
             jdk_home = subprocess.Popen('readlink -f `which javac` | sed "s:bin/javac::"',
